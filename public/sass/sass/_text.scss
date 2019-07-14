@@ -1,0 +1,10 @@
+.text-m { font-family: 'Roboto Mono'; font-weight: 500;}
+.text-l { font-family: 'Roboto Mono'; font-weight: 700;}
+
+* {
+    @extend .text-m ;
+}
+h1 {
+    font-size: 40px;
+    text-align: center;
+}

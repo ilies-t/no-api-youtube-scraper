@@ -1,0 +1,12 @@
+*,
+*:before,
+*:after {
+  position: relative;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  outline: none;
+}
+a:link {
+    text-decoration: none;
+}

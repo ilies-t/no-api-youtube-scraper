@@ -1,0 +1,4 @@
+@mixin selection($er) {
+	::-moz-selection { background: $er; }
+    ::selection { background: $er; }
+}

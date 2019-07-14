@@ -1,0 +1,143 @@
+// AUTHOR : https://gitlab.com/i-t
+// sass --watch public/sass/input.scss:public/sass/style.css
+
+// Variables
+$body:                  #FFFFFF;
+$color1:                #000000;
+$color2:                #FF023F;
+$fontDefault:                100%;
+$headerSize:                  20%;
+%trans {transition-duration: 300ms;}
+%wid100 {width:100%};
+
+// Display | Flex
+@import 'sass/_display.scss' ;
+
+// Align
+@import 'sass/align.scss';
+
+// Text & fonts
+@import 'sass/_text.scss';
+@import 'f.css';
+
+// Button
+@import 'sass/buttons.scss';
+
+// ------------------------------------ START
+html, body {@extend %wid100 ; height:100%; background:$body; scrollbar-width: none;}
+body{ background: $body; &.fencie {overflow: hidden;}}
+::placeholder {opacity: 0.35;}
+::selection {background: $color1; color: $body;}
+
+// Header
+header {
+    @extend .flex, .jc-sb ;
+    position: relative;
+    align-items: center;
+    @extend %wid100 ; height: $headerSize;
+    padding: 0px 5%;
+    background: $color1; color: $body;
+    z-index: 1;
+    img {max-height: 100%;}
+    a {color: $body; margin-left: 20px;}
+}
+// Alert
+.alert {
+    @extend .alignX ;
+    position: absolute; bottom: 10%;
+    width: 90%; padding: 20px 5px;
+    background: $color2; color: $body;
+    text-align: center;
+    box-shadow: 0px 24px 30px rgba(255, 2, 63, 0.15);
+    &.off {visibility: hidden;}
+    animation: x 200ms ease-in-out;
+    @keyframes x { 0% {bottom:-5% } 100% {bottom:10% }} ;
+}
+
+// Input
+div.form-elag {
+    @extend %wid100 ; height: (100%-$headerSize);
+    form {
+        @extend .flex, .jc-sa, .alignXY ;
+        align-items: center;
+        flex-flow: column wrap;
+        width: 50%; min-width: 250px; max-width: 500px;
+        div.input-contain {
+            @extend %wid100 ;
+            margin-bottom: 20px;
+            label {color: $color1; margin-bottom: 5px;}
+            input {
+                font-size: 16px;
+                height: 55px; @extend %wid100 ;
+                margin-top: 5px;
+                border: 2px solid $color1;
+                padding: 5px 10px;
+                text-overflow: ellipsis;
+                &:hover, &:focus {padding: 4px 9px; border: 3px solid $color1; }
+            }
+        }
+        button { @extend %wid100 ; }
+    }
+    &.good {
+        height: 40%;
+        form {
+            flex-flow: row nowrap;
+            width: 100%; min-width: 250px; max-width: none;
+            button, div.input-contain{ width: 45%; max-width: 500px; }
+        }
+    }
+    &.bad {
+        form {
+            div.input-contain {
+                label { color: $color2; }
+                input {
+                    border: 2px solid $color2;
+                    &:hover, &:focus {padding: 4px 9px; border: 3px solid $color2; }
+                }
+            }
+        }
+    }
+}
+
+// Result
+.result {
+    @extend %wid100 ; height: (100%-(60)); padding: 1.5%;
+    .result-card {
+        @extend %wid100 ; height: 100%;
+        margin: auto;
+        background-size: cover; background-position: center center;
+        border: 3px solid $color1;
+        z-index: 0;
+        .result-item-container {
+            @extend .flex , .jc-sa ;
+            position: absolute; bottom: 20px; left: 20px;
+            z-index: 2;
+            img {width: 100px; height: 100px; border-radius: 1000px; border: 3px solid #FFFFFF}
+            .channel-meta {
+                @extend .flex , .jc-sa ;
+                flex-flow: column nowrap;
+                margin-left: 20px;
+                * {
+                    color: #FFFFFF;
+                }
+                h2.result-subs {
+                    font-size: 50px;
+                }
+            }
+        }
+        &::after {
+            z-index: 1; content: ''; position: absolute; top: 0px; left: 0px; @extend %wid100 ; height: 100%; background: linear-gradient(180deg, rgba(0, 0, 0, 0.25) 0%, #000000 100%),  }
+    }
+}
+// RM WATERMARK
+img[src*="https://cdn.000webhost.com/000webhost/logo/footer-powered-by-000webhost-white2.png"] {
+    display: none;}
+
+// MOBILE
+@media screen and (orientation: portrait) {
+    img.result-subs {width:75px!important; height:75px!important;}
+    h2.result-subs {font-size: 30px!important;}
+}
+
+// Reset
+@import 'sass/_reset.scss' ;
